@@ -48,3 +48,33 @@ test('getByTitle', async ({ page }) => {
 test('getByTestId', async ({ page }) => {
     page.getByTestId('');
 });
+
+//
+
+test('HW1 - T1 - page.locator - CSS', async ({ page }) => {
+    const button = page.locator('.header_signin');
+    await button.highlight();
+});
+
+test('HW1 - T1 - page.locator - xPath', async ({ page }) => {
+    const button = page.locator('//button[contains(@class, "header_signin")]');
+    await button.highlight();
+});
+
+test('HW1 - T1 - getByRole', async ({ page }) => {
+    const button = page.getByRole('button', { name: 'Sign In' });
+    await button.highlight();
+});
+
+test('HW1 - T2 - Header elements', async ({ page }) => {
+    const header = page.locator('header');
+
+    const home = header.getByText('Home');
+    await home.highlight();
+
+    const about = header.getByText('About');
+    await about.highlight();
+
+    const contacts = header.getByText('Contacts');
+    await contacts.highlight();
+});

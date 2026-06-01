@@ -33,7 +33,7 @@ export default defineConfig({
             password: process.env.PASSWORD || '',
         },
 
-        testIdAttribute: 'qa-test-id', // change defaults for getByTestId()
+        testIdAttribute: 'qa-test-id', // change defaults from data-testid for getByTestId()
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: 'on-first-retry',
