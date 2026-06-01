@@ -18,7 +18,7 @@ test('page.locator - CSS', async ({ page }) => {
 });
 
 test('getByRole', async ({ page }) => {
-    const button = page.getByRole('button');
+    const button = page.getByRole('button', { name: 'Sign In' });
     await button.click();
 });
 
