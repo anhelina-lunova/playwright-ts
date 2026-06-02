@@ -30,3 +30,7 @@ test('.filter hasNot', async ({ page }) => {
         .filter({ hasNot: page.locator('span.icon-telegram') });
     await tgIcon.highlight();
 });
+
+test('.locator.locator', async ({ page }) => {
+    await page.locator('//nav').locator('//a').highlight();
+});
