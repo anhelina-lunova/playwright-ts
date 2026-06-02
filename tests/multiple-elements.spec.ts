@@ -32,3 +32,19 @@ test('all', async ({ page }) => {
         console.log(text);
     }
 });
+
+test('allTextContents', async ({ page }) => {
+    const elements = await page.locator('a').allTextContents();
+    console.log(elements);
+});
+
+test('HW2 - T1', async ({ page }) => {
+    const buttons = page.getByRole('button');
+    const countButtons = await buttons.count();
+    console.log(countButtons);
+});
+
+test('HW2 - T2', async ({ page }) => {
+    const button = page.getByRole('button').filter({ hasText: 'Sign In' });
+    await button.highlight();
+});
