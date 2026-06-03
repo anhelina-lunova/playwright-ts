@@ -19,7 +19,7 @@ test.describe('Sign In Tests', () => {
         signInForm = new SignInForm(page);
         garagePage = new GaragePage(page);
 
-        await homePage.openSite();
+        await homePage.navigate();
         await homePage.openSignInForm();
     });
 

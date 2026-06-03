@@ -1,50 +1,46 @@
 import { Locator, Page } from '@playwright/test';
+import { BaseForm } from './BaseForm';
 
-export class SignInForm {
-    private readonly page: Page;
-    private readonly emailField: Locator;
-    private readonly passwordField: Locator;
-    private readonly rememberMeCheckbox: Locator;
-    private readonly forgotPasswordButton: Locator;
-    private readonly registrationButton: Locator;
-    private readonly loginButton: Locator;
-    public readonly emptyEmailMessage: Locator;
-    public readonly emptyPasswordMessage: Locator;
-    public readonly incorrectEmailMessage: Locator;
-    public readonly wrongCredentialsMessage: Locator;
-
-    constructor(page: Page) {
-        this.page = page;
-        this.emailField = page.getByLabel('Email');
-        this.passwordField = page.getByLabel('Password');
-        this.rememberMeCheckbox = page.getByRole('checkbox', {
+export class SignInForm extends BaseForm {
+    private readonly emailField: Locator = this.page.getByLabel('Email');
+    private readonly passwordField: Locator = this.page.getByLabel('Password');
+    private readonly rememberMeCheckbox: Locator = this.page.getByRole(
+        'checkbox',
+        {
             name: 'Remember me',
-        });
-        this.forgotPasswordButton = page.getByRole('button', {
+        },
+    );
+    private readonly forgotPasswordButton: Locator = this.page.getByRole(
+        'button',
+        {
             name: 'Forgot password',
-        });
-        this.registrationButton = page.getByRole('button', {
+        },
+    );
+    private readonly registrationButton: Locator = this.page.getByRole(
+        'button',
+        {
             name: 'Registration',
-        });
-        this.loginButton = page.getByRole('button', { name: 'Login' });
-        this.emptyEmailMessage = page.getByText('Email required');
-        this.emptyPasswordMessage = page.getByText('Password required');
-        this.incorrectEmailMessage = page.getByText('Email is incorrect');
-        this.wrongCredentialsMessage = page.getByText(
-            'Wrong email or password',
-        );
-    }
+        },
+    );
+    private readonly loginButton: Locator = this.page.getByRole('button', {
+        name: 'Login',
+    });
+    public readonly emptyEmailMessage: Locator =
+        this.page.getByText('Email required');
+    public readonly emptyPasswordMessage: Locator =
+        this.page.getByText('Password required');
+    public readonly incorrectEmailMessage: Locator =
+        this.page.getByText('Email is incorrect');
+    public readonly wrongCredentialsMessage: Locator = this.page.getByText(
+        'Wrong email or password',
+    );
 
     async enterEmail(email: string) {
-        await this.emailField.focus();
         await this.emailField.fill(email);
-        await this.emailField.blur();
     }
 
     async enterPassword(password: string) {
-        await this.passwordField.focus();
         await this.passwordField.fill(password);
-        await this.passwordField.blur();
     }
 
     async checkRememberMe() {
@@ -64,9 +60,9 @@ export class SignInForm {
     }
 
     async signInWithCredentials(email: string, password: string) {
-        this.enterEmail(email);
-        this.enterPassword(password);
-        this.login();
+        await this.enterEmail(email);
+        await this.enterPassword(password);
+        await this.login();
     }
 
     async triggerErrorOnField(fieldName: string) {

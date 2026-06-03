@@ -1,16 +1,13 @@
 import { Locator, Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class HomePage {
-    private readonly page: Page;
-    private readonly signInButton: Locator;
+export class HomePage extends BasePage {
+    private readonly signInButton: Locator = this.page.getByRole('button', {
+        name: 'Sign in',
+    });
 
-    constructor(page: Page) {
-        this.page = page;
-        this.signInButton = page.getByRole('button', { name: 'Sign in' });
-    }
-
-    async openSite() {
-        await this.page.goto('/');
+    async navigate() {
+        await super.navigate('/');
     }
 
     async openSignInForm() {
