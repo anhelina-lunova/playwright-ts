@@ -21,6 +21,7 @@ test.describe('CodeGen Sign In Tests', () => {
         await expect(
             page.getByRole('heading', { name: 'Garage' }),
         ).toBeVisible();
+        await expect(page.getByRole('heading')).toContainText('Garage');
     });
 
     test('Sign in with empty email', async ({ page }) => {
