@@ -1,4 +1,6 @@
 export const testUser1 = {
+    name: 'Name',
+    lastName: 'Surname',
     email: process.env.USER_EMAIL || '',
     password: process.env.USER_PASSWORD || '',
 };

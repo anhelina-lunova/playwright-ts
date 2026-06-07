@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { Locator } from '@playwright/test';
 import { BaseForm } from './BaseForm';
 
 export class SignInForm extends BaseForm {
