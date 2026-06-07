@@ -69,6 +69,10 @@ test.describe('Sign Up Tests', () => {
 
     test.describe('Verify Sign Up unavailable without filling in mandatory fields', () => {
         test('Error messages are displayed if no data is filled in', async () => {
+            test.fail(
+                true,
+                'Known defect: the "emptyNameMessage" is "Name required" instead "Name is required"',
+            );
             await signUpForm.triggerErrorOnField('name');
             await signUpForm.triggerErrorOnField('lastName');
             await signUpForm.triggerErrorOnField('email');
@@ -85,6 +89,10 @@ test.describe('Sign Up Tests', () => {
         });
 
         test('Sign up with empty name', async () => {
+            test.fail(
+                true,
+                'Known defect: the "emptyNameMessage" is "Name required" instead "Name is required"',
+            );
             const password = generateRandomPassword();
             await signUpForm.triggerErrorOnField('name');
             await signUpForm.enterLastName(testUser1.lastName);
@@ -101,6 +109,10 @@ test.describe('Sign Up Tests', () => {
         });
 
         test('Sign up with empty last name', async () => {
+            test.fail(
+                true,
+                'Known defect: the "emptyLastNameMessage" is "Last name required" instead "Last name is required"',
+            );
             const password = generateRandomPassword();
             await signUpForm.enterName(testUser1.name);
             await signUpForm.triggerErrorOnField('lastName');

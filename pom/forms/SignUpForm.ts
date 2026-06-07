@@ -15,38 +15,50 @@ export class SignUpForm extends BaseForm {
         'button',
         { name: 'Register' },
     );
+
     public readonly emptyNameMessage: Locator = this.page.getByText(
-        'Name required',
+        'Name is required',
         { exact: true },
     );
     public readonly invalidNameMessage: Locator =
         this.page.getByText('Name is invalid');
+    public readonly wrongLengthNameMessage: Locator = this.page.getByText(
+        'Name has to be from 2 to 20 characters long',
+    );
+
     public readonly emptyLastNameMessage: Locator = this.page.getByText(
-        'Last name required',
+        'Last name is required',
         { exact: true },
     );
     public readonly invalidLastNameMessage: Locator = this.page.getByText(
         'Last name is invalid',
     );
+    public readonly wrongLengthLastNameMessage: Locator = this.page.getByText(
+        'Last name has to be from 2 to 20 characters long',
+    );
+
     public readonly emptyEmailMessage: Locator =
         this.page.getByText('Email required');
     public readonly incorrectEmailMessage: Locator =
         this.page.getByText('Email is incorrect');
+
     public readonly emptyPasswordMessage: Locator = this.page.getByText(
         'Password required',
         { exact: true },
     );
     public readonly incorrectPasswordMessage: Locator = this.page.getByText(
-        'from 8 to 15 characters long and contain at least one integer',
+        'Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter',
     );
+
     public readonly emptyReEnterPasswordMessage: Locator = this.page.getByText(
         'Re-enter password required',
     );
+    public readonly wrongReEnteredPasswordMessage: Locator =
+        this.page.getByText('Passwords do not match');
+
     public readonly userAlreadyExistMessage: Locator = this.page.getByText(
         'User already exists',
     );
-    public readonly wrongReEnteredPasswordMessage: Locator =
-        this.page.getByText('Passwords do not match');
 
     async enterName(name: string) {
         await this.nameField.fill(name);
