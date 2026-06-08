@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-allure": "allure generate -c config/allure/allurerc.mjs artifacts/allure-results",
-    "show-report-allure": "allure open artifacts/allure-report",
-    "show-report-html": "playwright show-report artifacts/playwright-report",
-    "allure": "npm run generate-allure && npm run show-report-allure"
+    "clean-allure": "rm -rf artifacts/allure-results artifacts/allure-report",
+    "generate-allure": "rm -rf artifacts/allure-report && allure generate -c config/allure/allurerc.mjs artifacts/allure-results",
+    "show-report-allure": "npm run generate-allure && allure open -c config/allure/allurerc.mjs artifacts/allure-report",
+    "show-report-html": "playwright show-report artifacts/playwright-report"
   },
   "repository": {
     "type": "git",

@@ -13,6 +13,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
  */
 export default defineConfig({
     testDir: './tests',
+    globalSetup: require.resolve('./config/allure/clean-results.mjs'),
     outputDir: 'artifacts/test-results',
     /* Run tests in files in parallel */
     fullyParallel: true,
