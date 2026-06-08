@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "generate-allure": "allure generate -c config/allure/allurerc.mjs artifacts/allure-results",
+    "show-report-allure": "allure open artifacts/allure-report",
+    "show-report-html": "playwright show-report artifacts/playwright-report",
+    "allure": "npm run generate-allure && npm run show-report-allure"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anhelina-lunova/playwright-ts.git"
@@ -19,6 +24,8 @@
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.1",
+    "allure": "^3.10.0",
+    "allure-playwright": "^3.9.0",
     "dotenv": "^17.4.2"
   }
 }

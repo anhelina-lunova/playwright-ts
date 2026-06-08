@@ -22,8 +22,12 @@ test.describe('Garage Page Tests', () => {
         });
 
         test('Add new car - Audi Q7', async ({ app }) => {
-            await app.addCarForm.fillInFormAndAddCar('Audi', 'Q7', 2000);
-            await app.garagePage.verifyCarIsAdded('Audi Q7', 2000);
+            test.step('Add new car Audi Q7 to Garage', async () => {
+                await app.addCarForm.fillInFormAndAddCar('Audi', 'Q7', 2000);
+            });
+            test.step('Verify Audi Q7 is added to Garage', async () => {
+                await app.garagePage.verifyCarIsAdded('Audi Q7', 2000);
+            });
         });
     });
 

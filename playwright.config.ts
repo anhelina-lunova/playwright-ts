@@ -13,6 +13,7 @@ dotenv.config({ path: path.resolve(__dirname, '.env') });
  */
 export default defineConfig({
     testDir: './tests',
+    outputDir: 'artifacts/test-results',
     /* Run tests in files in parallel */
     fullyParallel: true,
     /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -22,21 +23,29 @@ export default defineConfig({
     /* Opt out of parallel tests on CI. */
     workers: process.env.CI ? 1 : undefined,
     /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-    reporter: 'html',
+    reporter: [
+        ['html', { outputFolder: 'artifacts/playwright-report' }],
+        ['allure-playwright', { resultsDir: 'artifacts/allure-results' }],
+    ],
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
         /* Base URL to use in actions like `await page.goto('')`. */
         baseURL: process.env.BASE_URL,
 
         httpCredentials: {
-            username: process.env.USERNAME || '',
-            password: process.env.PASSWORD || '',
+            username: process.env.USERNAME!,
+            password: process.env.PASSWORD!,
         },
 
         testIdAttribute: 'qa-test-id', // change defaults from data-testid for getByTestId()
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-        trace: 'on-first-retry',
+        trace: 'retain-on-failure',
+        video: 'retain-on-failure',
+        screenshot: 'only-on-failure',
+        // launchOptions: {
+        //     slowMo: 1000,
+        // },
     },
 
     /* Configure projects for major browsers */
