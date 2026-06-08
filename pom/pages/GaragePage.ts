@@ -24,10 +24,19 @@ export class GaragePage extends BasePage {
         .locator('[name="miles"]')
         .first();
 
-    private readonly successMessage: Locator = this.page.locator(
+    private readonly successAddedMessage: Locator = this.page.locator(
         '.alert-success p',
         { hasText: 'Car added' },
     );
+
+    private readonly successRemovedMessage: Locator = this.page.locator(
+        '.alert-success p',
+        { hasText: 'Car added' },
+    );
+
+    private readonly editCarIcons: Locator = this.page.locator('.icon-edit');
+
+    // Methods
 
     async navigate() {
         await super.navigate('/panel/garage');
@@ -47,10 +56,18 @@ export class GaragePage extends BasePage {
     }
 
     async verifyCarIsAdded(brandAndModelName: string, carMileage: number) {
-        await expect(this.successMessage).toBeVisible();
+        await expect(this.successAddedMessage).toBeVisible();
         await expect(this.lastAddedCarName).toHaveText(brandAndModelName);
         await expect(this.lastAddedCarMileage).toHaveValue(
             carMileage.toString(),
         );
+    }
+
+    async openEditCarForm(carIndex: number) {
+        await this.editCarIcons.nth(carIndex).click();
+    }
+
+    async verifyCarIsRemoved() {
+        await expect(this.successRemovedMessage).toBeVisible();
     }
 }

@@ -1,29 +1,27 @@
 import { expect } from '@playwright/test';
-import { testUser1 } from '../../test-data/testUsers';
 import { test } from '../../utils/fixtures/pagesFixture';
 
 test.describe('Garage Page Tests', () => {
-    test.beforeEach(
-        'Open site and Sign In form',
-        async ({ garagePage, homePage, signInForm }) => {
-            await homePage.navigate();
-            await homePage.openSignInForm();
-            await signInForm.signInWithCredentials(
-                testUser1.email,
-                testUser1.password,
-            );
-            await garagePage.verifyOnGaragePage();
-            await garagePage.openAddCarForm();
-        },
-    );
+    test.use({ storageState: 'playwright/.auth/auth.json' });
 
-    test('Add new car - BMW X5', async ({ garagePage, addCarForm }) => {
-        await addCarForm.fillInFormAndAddCar('BMW', 'X5', 1000);
+    test.beforeEach(async ({ garagePage }) => {
+        await garagePage.navigate();
+        await garagePage.openAddCarForm();
+    });
+
+    test('Add new car - BMW X5', async ({
+        garagePage,
+        addCarFormWithCarRemoval,
+    }) => {
+        await addCarFormWithCarRemoval.fillInFormAndAddCar('BMW', 'X5', 1000);
         await garagePage.verifyCarIsAdded('BMW X5', 1000);
     });
 
-    test('Add new car - Audi Q7', async ({ garagePage, addCarForm }) => {
-        await addCarForm.fillInFormAndAddCar('Audi', 'Q7', 2000);
+    test('Add new car - Audi Q7', async ({
+        garagePage,
+        addCarFormWithCarRemoval,
+    }) => {
+        await addCarFormWithCarRemoval.fillInFormAndAddCar('Audi', 'Q7', 2000);
         await garagePage.verifyCarIsAdded('Audi Q7', 2000);
     });
 
