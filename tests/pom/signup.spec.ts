@@ -25,11 +25,12 @@ test.describe('Sign Up Tests', () => {
 
     test.describe('Verify Sign Up with valid data', () => {
         test('Successful sign up with valid data', async () => {
+            const email = generateRandomEmail();
             const password = generateRandomPassword();
             await signUpForm.fillInAndRegister(
                 testUser1.name,
                 testUser1.lastName,
-                generateRandomEmail(),
+                email,
                 password,
                 password,
             );

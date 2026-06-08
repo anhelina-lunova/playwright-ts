@@ -8,7 +8,7 @@ test.describe('Garage Page Tests', () => {
     let garagePage: GaragePage;
     let addCarForm: AddCarForm;
 
-    test.use({ storageState: 'playwright/.auth/auth.json' });
+    test.use({ storageState: 'playwright/.auth/testuser1.json' });
 
     // test.beforeAll(
     //     'Open site and get SignIn token',

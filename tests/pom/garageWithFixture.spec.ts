@@ -2,12 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../../utils/fixtures/pagesFixture';
 
 test.describe('Garage Page Tests', () => {
-    test.use({ storageState: 'playwright/.auth/auth.json' });
-
-    test.beforeEach(async ({ garagePage }) => {
-        await garagePage.navigate();
-        await garagePage.openAddCarForm();
-    });
+    // test.use({ storageState: 'playwright/.auth/testuser1.json' });
 
     test('Add new car - BMW X5', async ({
         garagePage,
@@ -25,20 +20,20 @@ test.describe('Garage Page Tests', () => {
         await garagePage.verifyCarIsAdded('Audi Q7', 2000);
     });
 
-    test('Add new car without mileage', async ({ addCarForm }) => {
-        await addCarForm.selectBrand('Ford');
-        await addCarForm.selectModel('Focus');
-        await addCarForm.triggerMileageErrorMessage();
+    test('Add new car without mileage', async ({ addCarFormAsUser1 }) => {
+        await addCarFormAsUser1.selectBrand('Ford');
+        await addCarFormAsUser1.selectModel('Focus');
+        await addCarFormAsUser1.triggerMileageErrorMessage();
 
-        await expect(addCarForm.mileageRequiredMessage).toBeVisible();
-        await expect(addCarForm.addButton).toBeDisabled();
+        await expect(addCarFormAsUser1.mileageRequiredMessage).toBeVisible();
+        await expect(addCarFormAsUser1.addButton).toBeDisabled();
     });
 
     test('Close "Add a car" form via "Cancel" button', async ({
-        addCarForm,
+        addCarFormAsUser2,
     }) => {
-        await addCarForm.cancelAdding();
-        await expect(addCarForm.addCarHeader).not.toBeVisible();
+        await addCarFormAsUser2.cancelAdding();
+        await expect(addCarFormAsUser2.addCarHeader).not.toBeVisible();
     });
 
     test('Close "Add a car" form via "Close" icon', async ({ addCarForm }) => {
