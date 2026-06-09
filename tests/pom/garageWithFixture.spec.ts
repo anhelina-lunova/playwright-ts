@@ -19,6 +19,11 @@ test.describe('Garage Page Tests', () => {
         test('Add new car - BMW X5', async ({ app }) => {
             await app.addCarForm.fillInFormAndAddCar('BMW', 'X5', 1000);
             await app.garagePage.verifyCarIsAdded('BMW X5', 1000);
+            await expect(
+                app.page.locator('.car-item').first(),
+            ).toHaveScreenshot('last-added-car-bmw-x5.png', {
+                mask: [app.page.locator('[name="miles"]')],
+            });
         });
 
         test('Add new car - Audi Q7', async ({ app }) => {
@@ -27,6 +32,11 @@ test.describe('Garage Page Tests', () => {
             });
             test.step('Verify Audi Q7 is added to Garage', async () => {
                 await app.garagePage.verifyCarIsAdded('Audi Q7', 2000);
+            });
+
+            await app.page.screenshot({
+                path: 'test-data/pages/garage/audi-q7.png',
+                // fullPage: true,
             });
         });
     });
