@@ -1,5 +1,5 @@
 import { chromium } from '@playwright/test';
-import { test, expect } from '../../utils/fixtures/screenSizesFixture';
+import { test, expect } from '../../../utils/fixtures/screenSizesFixture';
 
 test.describe('Fixtures', () => {
     test('Open wikipedia without fixtures', async () => {
