@@ -61,6 +61,18 @@ export default defineConfig({
             name: 'e2e',
             use: { ...devices['Desktop Chrome'] },
             dependencies: ['setup'],
+            testMatch: '/tests/ui/**.spec.ts',
+        },
+        {
+            name: 'api',
+            use: { ...devices['Desktop Chrome'] },
+            dependencies: ['setup'],
+            testMatch: '/tests/api/**.api.spec.ts',
+        },
+        {
+            name: 'practice',
+            use: { ...devices['Desktop Chrome'] },
+            testMatch: '/tests/practice/**/**.spec.ts',
         },
 
         // {

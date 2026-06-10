@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { testUser1 } from '../../test-data/testUsers';
 import GarageService from '../../utils/api/services/GarageService';
 import AuthService from '../../utils/api/services/AuthService';
+import { generateNewCar } from '../../utils/api/factories/cars.factory';
 
 let garageService: GarageService;
 let authService: AuthService;
@@ -51,11 +52,7 @@ test.describe('Private requests', () => {
         let addedCarsToRemove: number[] = [];
 
         test('Add new car - Ford Fiesta', async () => {
-            const newCarData = {
-                carBrandId: 3,
-                carModelId: 11,
-                mileage: 123,
-            };
+            const newCarData = generateNewCar(3, 11, 123);
 
             const addedCar = await garageService.addCar(
                 sid,
@@ -76,11 +73,7 @@ test.describe('Private requests', () => {
         });
 
         test('Add new car - Audi TT', async () => {
-            const newCarData = {
-                carBrandId: 1,
-                carModelId: 1,
-                mileage: 124,
-            };
+            const newCarData = generateNewCar(1, 1, 124);
 
             const addedCar = await garageService.addCar(
                 sid,

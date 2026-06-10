@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { testUser1 } from '../../../test-data/testUsers';
+import { testUser1 } from '../../../../test-data/testUsers';
 
 test.describe('Unauthenticated', async () => {
     test('Get all brands', async ({ request }) => {
