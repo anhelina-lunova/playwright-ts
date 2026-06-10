@@ -58,6 +58,13 @@ export default defineConfig({
         },
 
         {
+            name: 'e2e-with-api',
+            use: { ...devices['Desktop Chrome'] },
+            dependencies: ['setup'],
+            testMatch: '/tests/api-and-ui/**.spec.ts',
+        },
+
+        {
             name: 'e2e',
             use: { ...devices['Desktop Chrome'] },
             dependencies: ['setup'],
