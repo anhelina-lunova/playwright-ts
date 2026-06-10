@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/anhelina-lunova/playwright-ts#readme",
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.1",
     "allure": "^3.10.0",

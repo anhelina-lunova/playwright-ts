@@ -5,6 +5,10 @@ import { SignInForm } from '../../pom/forms/SignInForm';
 import { AddCarForm } from '../../pom/forms/AddCarForm';
 import { EditCarForm } from '../../pom/forms/EditCarForm';
 import { RemoveCarForm } from '../../pom/forms/RemoveCarForm';
+import { AddExpenseForm } from '../../pom/forms/AddExpenseForm';
+import { ExpensesPage } from '../../pom/pages/ExpensesPage';
+import { ProfilePage } from '../../pom/pages/ProfilePage';
+import { EditProfileForm } from '../../pom/forms/EditProfileForm';
 
 type App = {
     page: Page;
@@ -14,6 +18,10 @@ type App = {
     addCarForm: AddCarForm;
     editCarForm: EditCarForm;
     removeCarForm: RemoveCarForm;
+    addExpenseForm: AddExpenseForm;
+    expensesPage: ExpensesPage;
+    profilePage: ProfilePage;
+    editProfileForm: EditProfileForm;
 };
 
 export const test = base.extend<{ app: App }>({
@@ -26,6 +34,10 @@ export const test = base.extend<{ app: App }>({
             addCarForm: new AddCarForm(page),
             editCarForm: new EditCarForm(page),
             removeCarForm: new RemoveCarForm(page),
+            addExpenseForm: new AddExpenseForm(page),
+            expensesPage: new ExpensesPage(page),
+            profilePage: new ProfilePage(page),
+            editProfileForm: new EditProfileForm(page),
         };
         await use(app);
     },

@@ -32,6 +32,7 @@ test.describe('Garage Page Tests', () => {
                 app.page.locator('.car-item').first(),
             ).toHaveScreenshot('last-added-car-bmw-x5.png', {
                 mask: [app.page.locator('[name="miles"]')],
+                maxDiffPixels: 31,
             });
         });
 

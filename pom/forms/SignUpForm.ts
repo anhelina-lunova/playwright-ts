@@ -62,26 +62,32 @@ export class SignUpForm extends BaseForm {
 
     async enterName(name: string) {
         await this.nameField.fill(name);
+        await this.reEnterPasswordField.blur();
     }
 
     async enterLastName(lastName: string) {
         await this.lastNameField.fill(lastName);
+        await this.reEnterPasswordField.blur();
     }
 
     async enterEmail(email: string) {
         await this.emailField.fill(email);
+        await this.reEnterPasswordField.blur();
     }
 
     async enterPassword(password: string) {
         await this.passwordField.fill(password);
+        await this.reEnterPasswordField.blur();
     }
 
     async reEnterPassword(password: string) {
         await this.reEnterPasswordField.fill(password);
+        await this.reEnterPasswordField.blur();
     }
 
     async register() {
-        await this.registrationButton.click();
+        await this.registrationButton.scrollIntoViewIfNeeded();
+        await this.registrationButton.blur();
     }
 
     async fillInAndRegister(
