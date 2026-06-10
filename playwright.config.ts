@@ -55,6 +55,7 @@ export default defineConfig({
         {
             name: 'setup',
             testMatch: '**/setup/**.setup.ts',
+            workers: 1,
         },
 
         {
